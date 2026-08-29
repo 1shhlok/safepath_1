@@ -1,0 +1,24 @@
+{
+  "name": "safepath-workspace",
+  "version": "1.0.0",
+  "description": "SafePath - AI-Assisted Urban Safety Decision-Support System for Nagpur",
+  "private": true,
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev:ml": "cd ml && python app.py",
+    "seed": "cd server && npm run seed",
+    "test": "cd server && npm test",
+    "test:ml": "cd ml && python -m pytest",
+    "build:client": "cd client && npm run build",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [
+    "safepath",
+    "urban-safety",
+    "nagpur",
+    "decision-support"
+  ],
+  "author": "SafePath Engineering Team",
+  "license": "ISC"
+}

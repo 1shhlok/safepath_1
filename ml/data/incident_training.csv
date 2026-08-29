@@ -1,0 +1,121 @@
+description,incident_type
+"My wallet was silently picked from my backpack while walking through the crowded market.",Theft
+"Someone stole my bicycle from outside the grocery store while I was inside shopping.",Theft
+"Left my laptop unattended on the cafe table for five minutes and it was gone when I returned.",Theft
+"A person snatched my handbag from behind and ran into the narrow alleyway.",Theft
+"My mobile phone was stolen from my jacket pocket on the crowded city bus.",Theft
+"Parked car was broken into and the dashboard camera and sunglasses were missing.",Theft
+"Someone stole the spare tyre attached to the back of my vehicle overnight.",Theft
+"My umbrella and shopping bags were taken from the bench while I was tying my shoes.",Theft
+"Unattended helmet left on the motorcycle handlebar was taken by an unknown person.",Theft
+"Gold chain was slyly unclasped and stolen during the religious procession.",Theft
+"Two men quietly walked off with construction tools left outside the house.",Theft
+"My purse disappeared from my office desk while I was away for lunch.",Theft
+"A thief grabbed a package delivered to my front porch and fled on foot.",Theft
+"Someone took money from the shop cash drawer while the cashier was looking away.",Theft
+"My luggage bag went missing from the train compartment rack during the night.",Theft
+"Stole my gym bag containing clothes and headphones from the open locker.",Theft
+"A guy quietly slipped my wristwatch off the counter and walked away.",Theft
+"Motorcycle parked outside my apartment building was stolen during the early morning hours.",Theft
+"Someone opened my backpack zipper and took my tablet without me noticing.",Theft
+"Found my car trunk open and all luggage bags missing after parking near the garden.",Theft
+"Two masked men cornered me at knife-point and demanded all my cash and gold.",Robbery
+"A man pulled out a blade and forced me to transfer money via UPI under threat of violence.",Robbery
+"Stopped on the roadside by three armed individuals who took my motorcycle and phone by force.",Robbery
+"Mugged near the ATM; the attacker threatened to stab me if I did not hand over the cash.",Robbery
+"A gang surrounded my car at a deserted signal, brandished metal pipes, and took my wallet.",Robbery
+"Armed assailant held a weapon to my neck and took my luxury watch and diamond ring.",Robbery
+"Robbers forced their way into the retail shop at closing time with weapons and looted the register.",Robbery
+"Confronted in the dark underpass by two men who threatened my life unless I gave them my laptop bag.",Robbery
+"Delivery rider was beaten with sticks and robbed of all collected cash and mobile device.",Robbery
+"Violently shoved against the wall and threatened with a firearm until I handed over my purse.",Robbery
+"Robbed at gunpoint while waiting for a cab late at night near the outskirts road.",Robbery
+"Group of men blocked the road with wooden logs, threatened passengers with knives, and looted valuables.",Robbery
+"Shopkeeper was held hostage at gunpoint while thieves emptied the jewellery display.",Robbery
+"A person brandishing a sharp knife cornered me in the parking basement and demanded my wallet.",Robbery
+"Muggers physically threatened my friend with broken bottles and stole her handbag.",Robbery
+"Assailants intimidated us with weapons and seized our vehicle keys along with wallets.",Robbery
+"Held at knifepoint in an elevator and forced to surrender my smartphone and cash.",Robbery
+"Three robbers ambushed our vehicle, shattered the window, and stole all bags under threat.",Robbery
+"Armed suspects demanded gold bangles from an elderly woman while threatening harm.",Robbery
+"Cornered near the highway overpass and forced to surrender wallet and phone under weapon threat.",Robbery
+"A man has been following me for four blocks making vulgar and threatening comments.",Harassment
+"Group of young men stood at the corner catcalling and passing inappropriate remarks at women.",Harassment
+"Persistent stalking by an unknown individual outside my college campus for the past week.",Harassment
+"Someone in the bus kept inappropriately touching and crowding against me despite warnings.",Harassment
+"Verbal abuse, intimidation, and obscene gestures from a group loitering near the metro station.",Harassment
+"A stranger kept taking unauthorized photos of me and followed me all the way to my bus stop.",Harassment
+"Group of people blocking the pedestrian walkway and passing derogatory remarks at passersby.",Harassment
+"Received aggressive verbal threats and sexual remarks while walking alone in the evening.",Harassment
+"A driver slowed down alongside me, repeatedly blowing horn and shouting lewd comments.",Harassment
+"Constantly harassed and heckled by street loafers every time I leave my apartment building.",Harassment
+"Person at the park making obscene gestures and refusing to leave after being told to stop.",Harassment
+"Two men on a scooter circled around me three times making offensive suggestive remarks.",Harassment
+"Unwanted stalking behavior and intimidating stares from an individual outside our office.",Harassment
+"A group of eve-teasers gathered at the coaching center gate harassing young students.",Harassment
+"Received explicit threats and persistent verbal intimidation while waiting at the bus stand.",Harassment
+"An aggressive individual blocked my path, shouting abusive words and intimidating me.",Harassment
+"Someone repeatedly shadowed my steps and whispered inappropriate phrases in the dark alley.",Harassment
+"Persistent eve teasing and catcalling near the girls hostel entrance gate.",Harassment
+"Individual making threatening gestures and stalking students along the library footpath.",Harassment
+"Group of drunk men passing derogatory remarks and intimidating pedestrians outside the cinema.",Harassment
+"An unknown attacker punched me in the face and kicked me repeatedly on the street.",Assault
+"Physical fight broke out where a man was beaten with an iron rod and left injured.",Assault
+"A pedestrian was attacked from behind with a blunt object, suffering head injuries and bruises.",Assault
+"Violent altercation outside the bar where multiple people exchanged severe punches and kicks.",Assault
+"Physically beaten and pushed to the ground by an aggressive stranger during an argument.",Assault
+"Two men attacked a shopkeeper with fists and wooden bats causing physical wounds.",Assault
+"Got into a road rage incident where the other driver stepped out and physically assaulted me.",Assault
+"Assailant physically struck the security guard in the chest and knocked him unconscious.",Assault
+"Group attacked an innocent passerby with punches, kicks, and wooden sticks near the park.",Assault
+"Physical assault resulting in fractured arm after an altercation in the market square.",Assault
+"A man struck another person with a heavy helmet causing bleeding wounds.",Assault
+"Random violent assault by two intoxicated individuals who beat a pedestrian.",Assault
+"Physical brawl where several individuals were struck and injured with sticks and stones.",Assault
+"Attacked and beaten on the sidewalk without provocation, sustained facial injuries.",Assault
+"A violent suspect pushed a commuter down the stairs at the railway station.",Assault
+"Physically assaulted with slaps, punches, and shoved against the concrete pavement.",Assault
+"Mob attacked a motorist after an argument, causing severe bodily harm.",Assault
+"Assailant struck a victim in the face and continued kicking while the victim was on the floor.",Assault
+"Victim was hit in the head with a bottle during a sudden violent brawl.",Assault
+"Physical strike to the jaw and body beatings during a violent scuffle in the street.",Assault
+"Group of masked individuals loitering near residential gates trying door handles at 2 AM.",Suspicious Activity
+"Unidentified person peering into multiple car windows with a flashlight in the dark parking lot.",Suspicious Activity
+"An unmarked van circling the neighborhood slowly multiple times without headlights.",Suspicious Activity
+"Unattended large suspicious package left behind near the main bus terminal ticketing counter.",Suspicious Activity
+"Two men standing near an ATM for hours watching customers enter PINs without making transactions.",Suspicious Activity
+"Stranger attempting to open rear gate locks of several houses in our society.",Suspicious Activity
+"A group of unknown individuals casing houses and taking notes on security cameras.",Suspicious Activity
+"Suspicious vehicle parked in front of children park with concealed number plates.",Suspicious Activity
+"Person wearing a heavy trench coat in hot weather pacing nervously near government building.",Suspicious Activity
+"Drone hovering low over private balconies and residential compounds late at night.",Suspicious Activity
+"Unidentified people lurking in the abandoned warehouse perimeter with large duffel bags.",Suspicious Activity
+"Individual checking padlocks on closed market shutters late in the night.",Suspicious Activity
+"Suspicious characters hiding behind bushes near the poorly lit walking trail.",Suspicious Activity
+"Car with tinted windows idling near school gates during closing hours with no driver visible.",Suspicious Activity
+"Person trying to open apartment building fire exit doors from the outside.",Suspicious Activity
+"Unknown men lingering around electric transformers and telecom poles with cutters.",Suspicious Activity
+"Suspicious bag left under a public bench near the crowded temple entrance.",Suspicious Activity
+"Group of strangers taking photographs of bank exits and security guard shift changes.",Suspicious Activity
+"Man loitering near bicycle stands carrying heavy bolt cutters in an oversized bag.",Suspicious Activity
+"Suspicious activity observed around building basement generator rooms at odd hours.",Suspicious Activity
+"Street light malfunction has caused a major dark stretch along the main road.",Other
+"Deep open pothole on the turn causing two-wheelers to skid and risk accidents.",Other
+"Stray dogs gathered in a large pack barking aggressively and chasing two-wheelers.",Other
+"Loud construction work continuing past midnight causing severe public disturbance.",Other
+"Water main burst flooding the intersection and creating severe traffic bottleneck.",Other
+"Illegal vegetable vendors blocking the entire pedestrian sidewalk forcing people onto the road.",Other
+"Fallen tree branch blocking one lane of traffic following heavy evening rain.",Other
+"Open manhole without warning sign or barricade posing danger to pedestrians.",Other
+"Garbage pile on the corner catching fire and emitting toxic burning plastic fumes.",Other
+"Overhead electrical wire dangling dangerously close to the bus stop shed.",Other
+"Traffic signal malfunctioning and showing flashing yellow causing intersection chaos.",Other
+"Severe noise pollution from unauthorized sound systems in residential zone.",Other
+"Slippery oil spill on the road curve causing vehicles to lose traction.",Other
+"Broken glass bottles scattered across the public park jogging track.",Other
+"Stray cattle wandering on the middle lane of the expressway causing sudden braking.",Other
+"Broken street signs and missing guardrail near the canal bridge approach.",Other
+"Unauthorized commercial parking blocking emergency ambulance gate access.",Other
+"Severe sewage overflow on the pavement making walking impossible.",Other
+"Damaged road divider with protruding iron rebar dangerous to commuters.",Other
+"Overgrown bushes completely obscuring road visibility at the T-junction curve.",Other
