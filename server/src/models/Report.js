@@ -56,14 +56,61 @@ const reportSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['active', 'low_confidence', 'flagged', 'archived'],
-      default: 'active'
+      enum: ['pending_review', 'accepted', 'rejected', 'archived'],
+      default: 'pending_review'
+    },
+    // Supporting evidence images (1-3 images, max 5MB, JPEG/PNG/WebP)
+    evidenceImages: [
+      {
+        publicId: { type: String, default: '' },
+        url: { type: String, required: true },
+        fileName: { type: String, default: '' },
+        fileSize: { type: Number, default: 0 },
+        mimeType: { type: String, default: '' },
+        storageType: { type: String, enum: ['cloudinary', 'local_secure'], default: 'local_secure' },
+        uploadedAt: { type: Date, default: Date.now }
+      }
+    ],
+    // Admin moderation decision details
+    review: {
+      reviewedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        default: null
+      },
+      reviewedAt: {
+        type: Date,
+        default: null
+      },
+      decision: {
+        type: String,
+        enum: ['accepted', 'rejected', null],
+        default: null
+      },
+      rejectionReason: {
+        type: String,
+        trim: true,
+        default: null
+      },
+      reviewNotes: {
+        type: String,
+        trim: true,
+        default: ''
+      }
+    },
+    // Guarantees accepted impact is applied to area risk exactly once
+    riskImpactApplied: {
+      type: Boolean,
+      default: false
     }
   },
   {
-    timestamps: false,
+    timestamps: true,
     versionKey: false
   }
 );
+
+reportSchema.index({ areaId: 1, status: 1 });
+reportSchema.index({ userId: 1, status: 1 });
 
 module.exports = mongoose.model('Report', reportSchema);

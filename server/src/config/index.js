@@ -38,9 +38,14 @@ const config = {
     CRITICAL: { min: 76, max: 100, label: 'Critical', color: '#EF4444' }
   },
 
-  // Authoritative Risk Engine Parameters
+  // Authoritative Risk Engine Parameters (v4.0.0)
   riskParams: {
-    baseZoneRisk: 10,
+    formulaVersion: '4.0.0',
+    // Deterministic baseline normalization boundaries for historical station crime volume
+    baselineMinScore: 15,
+    baselineMaxScore: 60,
+    referenceMinReportedCrimes: 280, // Approximate min station volume in 2024 workbook data
+    referenceMaxReportedCrimes: 1750, // Approximate max station volume in 2024 workbook data
     timeDecayHalfLifeDays: 30, // Reports lose 50% impact after 30 days
     recentIncidentWindowDays: 60,
     confidenceFactorWeight: 1.0,

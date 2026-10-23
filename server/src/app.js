@@ -23,7 +23,7 @@ app.get('/api/health', async (req, res) => {
       api: 'online',
       mlClassification: mlHealthy ? 'online' : 'unreachable'
     }
-  });
+  });  
 });
 
 // API Routes

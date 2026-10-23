@@ -1,5 +1,6 @@
 const axios = require('axios');
 const nagpurZones = require('../seed/nagpurZones');
+const nagpurStations = require('../seed/nagpurStations');
 
 // In-memory cache to respect OSM Nominatim policy and reduce API calls
 const geocodeCache = new Map();
@@ -45,6 +46,23 @@ class GeocodingService {
         longitude: directMatch.center.longitude,
         displayName: `${directMatch.name}, Nagpur, Maharashtra, India`,
         source: 'predefined_zone'
+      };
+    }
+
+    // 1b. Check official station names from workbook
+    const stationMatch = nagpurStations.find(
+      s => s.name.toLowerCase() === cleanQuery ||
+           cleanQuery.includes(s.name.toLowerCase()) ||
+           s.name.toLowerCase().includes(cleanQuery)
+    );
+
+    if (stationMatch) {
+      return {
+        name: stationMatch.name,
+        latitude: stationMatch.center.latitude,
+        longitude: stationMatch.center.longitude,
+        displayName: `${stationMatch.name}, Nagpur, Maharashtra, India`,
+        source: 'police_station_catchment'
       };
     }
 

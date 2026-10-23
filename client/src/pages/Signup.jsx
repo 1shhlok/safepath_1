@@ -38,13 +38,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-[75vh] flex items-center justify-center px-4 py-12">
-      <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-7 sm:p-9 shadow-2xl space-y-6">
+    <div className="min-h-[78vh] flex items-center justify-center px-4 py-12">
+      <div className="max-w-md w-full bg-[#0b101f]/90 border border-slate-800/90 rounded-2xl p-7 sm:p-9 shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500 opacity-80" />
         <div className="text-center space-y-2">
-          <div className="inline-flex p-3 bg-blue-600/20 text-blue-400 rounded-2xl border border-blue-500/30 mb-1">
-            <Shield className="w-7 h-7" />
+          <div className="inline-flex p-3 bg-blue-600/15 text-blue-400 rounded-2xl border border-blue-500/30 mb-1">
+            <Shield className="w-7 h-7 text-blue-400" />
           </div>
-          <h2 className="text-2xl font-black text-white">Join SafePath Nagpur</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight">Citizen Onboarding</h2>
           <p className="text-xs text-slate-400">
             Create an account to report urban safety incidents and support Nagpur citizens.
           </p>
@@ -59,7 +60,7 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+            <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider font-mono">
               Full Name
             </label>
             <div className="relative">
@@ -72,13 +73,13 @@ const Signup = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Ramesh Deshmukh"
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070b14] border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-sans"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+            <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider font-mono">
               Email Address
             </label>
             <div className="relative">
@@ -91,13 +92,13 @@ const Signup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070b14] border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-sans"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+            <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider font-mono">
               Password
             </label>
             <div className="relative">
@@ -110,7 +111,7 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="At least 6 characters"
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#070b14] border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-sans"
               />
             </div>
           </div>
@@ -118,7 +119,7 @@ const Signup = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-900/30 flex items-center justify-center space-x-2 disabled:opacity-50"
+            className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-900/40 flex items-center justify-center space-x-2 disabled:opacity-50 border border-blue-400/30"
           >
             <span>{loading ? 'Creating Account...' : 'Sign Up'}</span>
             <ArrowRight className="w-4 h-4" />

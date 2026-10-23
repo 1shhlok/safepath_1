@@ -8,6 +8,8 @@
     "dev:client": "cd client && npm run dev",
     "dev:ml": "cd ml && python app.py",
     "seed": "cd server && npm run seed",
+    "extract:data": "python scripts/extract_workbook.py",
+    "import:data": "cd server && node src/seed/importWorkbookData.js",
     "test": "cd server && npm test",
     "test:ml": "cd ml && python -m pytest",
     "build:client": "cd client && npm run build",

@@ -39,6 +39,31 @@ const areaSchema = new mongoose.Schema(
         trim: true
       }
     ],
+    stationMarathi: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    policeZone: {
+      type: String,
+      trim: true,
+      default: 'Unverified — Zone 1/2 or check current roster'
+    },
+    zoneMappingStatus: {
+      type: String,
+      enum: ['verified_document', 'unverified'],
+      default: 'unverified'
+    },
+    coordinateType: {
+      type: String,
+      default: 'approximate_station_marker'
+    },
+    historicalBaseline: {
+      year: Number,
+      reportedCrimes: Number,
+      detectionRate: Number,
+      baselineRisk: Number
+    },
     updatedAt: {
       type: Date,
       default: Date.now

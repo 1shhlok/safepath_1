@@ -11,11 +11,11 @@ class MLService {
     if (!description || typeof description !== 'string' || !description.trim()) {
       throw new Error('Valid incident description is required for ML classification');
     }
-
+  
     const payload = {
       description: description.trim()
     };
-
+//ML LINKAGE
     try {
       const response = await axios.post(`${config.mlServiceUrl}/predict`, payload, {
         timeout: 5000,

@@ -31,3 +31,9 @@ build/
 Thumbs.db
 .vscode/
 .idea/
+# Agent Instructions & Progress
+UI_REDESIGN_HARNESS.md
+UI_PROGRESS.md
+AGENT_PROGRESS.md
+SAFEPath_Harness_Engineering.md
+SAFEPath_Existing_Project_Delta_Harness_v4.md

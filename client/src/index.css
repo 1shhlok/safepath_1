@@ -5,29 +5,127 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #06090f;
+    color: #f1f5f9;
+  }
+
+  code, kbd, samp, pre {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  /* Custom subtle tactical scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #090d16;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
   }
 }
 
-/* Custom Leaflet Map Dark Styling */
+/* Custom Tactical Leaflet Map Dark Styling */
 .leaflet-container {
   width: 100%;
   height: 100%;
-  border-radius: 0.75rem;
-  background-color: #0b1120;
+  border-radius: 1rem;
+  background-color: #070b14;
+  outline: none;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #1e293b !important;
+  background: rgba(13, 19, 33, 0.95) !important;
   color: #f8fafc !important;
-  border-radius: 0.75rem !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid #334155 !important;
+  border-radius: 0.875rem !important;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(59, 130, 246, 0.2) !important;
+  border: 1px solid rgba(51, 65, 85, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.4 !important;
 }
 
 .leaflet-popup-tip {
-  background: #1e293b !important;
+  background: #0d1321 !important;
 }
 
 .leaflet-popup-close-button {
   color: #94a3b8 !important;
+  padding: 6px !important;
 }
+
+.leaflet-popup-close-button:hover {
+  color: #ffffff !important;
+}
+
+/* Tactical Leaflet Control Bar & Zoom Styling */
+.leaflet-bar {
+  border: 1px solid rgba(51, 65, 85, 0.8) !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.leaflet-bar a {
+  background-color: rgba(9, 13, 22, 0.9) !important;
+  color: #94a3b8 !important;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  transition: all 0.15s ease;
+}
+
+.leaflet-bar a:hover {
+  background-color: #1e293b !important;
+  color: #38bdf8 !important;
+}
+
+.leaflet-bar a.leaflet-disabled {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  color: #475569 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(7, 11, 20, 0.85) !important;
+  color: #64748b !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(4px) !important;
+  border-top-left-radius: 0.5rem;
+  padding: 2px 8px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #94a3b8 !important;
+}
+
+/* OpenStreetMap Standard Tile Layer Dark Geospatial Filter */
+.leaflet-tile-pane {
+  filter: brightness(0.65) invert(1) contrast(2.8) hue-rotate(205deg) saturate(0.32) brightness(0.72) !important;
+}
+
+/* Feathered Continuous Heatmap Layer (Zero Hard Borders) */
+.leaflet-heatmap-pane-pane {
+  filter: blur(20px) saturate(1.8) !important;
+  mix-blend-mode: screen !important;
+  pointer-events: none !important;
+}
+
+/* Subtle tactical grid background pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
