@@ -1,216 +1,216 @@
-# SafePath — AI-Assisted Urban Safety Decision-Support System
+# SafePath
 
-> **Nagpur, Maharashtra** | Decision-support platform for urban safety, zone-level corridor evaluation, and real-time incident classification.
+SafePath is a Nagpur-focused urban safety decision-support platform that helps residents understand route risk, submit incident reports with evidence, and let administrators moderate public safety data before it influences zone scores.
 
----
+The system combines a React frontend, an Express/MongoDB backend, and a Python ML microservice to score police-station catchment areas, analyze corridors between zones, and classify incident descriptions.
 
-## 1. Product Overview
+## What the project does
 
-**SafePath** is an AI-assisted urban safety decision-support application specifically designed for Nagpur, Maharashtra. When citizens plan a journey between two locations, SafePath analyzes predefined urban zones, evaluates historical incident density and severity, and highlights **Areas to Follow** (safer corridors) and **Areas to Avoid** (elevated risk zones).
+- Evaluates a journey between two locations by comparing the safety of Nagpur zones and recommending lower-risk corridors
+- Displays area-level risk scores and zone metadata on an interactive map UI
+- Accepts citizen incident reports with mandatory evidence images and AI-assisted incident classification
+- Requires admin review before accepted reports affect public risk calculations
+- Maintains audit logs for moderation decisions and report history
 
-### What SafePath Is NOT
-- **Not a turn-by-turn road navigation system** (does NOT construct road graphs, use Dijkstra, or draw blue route polylines).
-- **Not a police crime verification service** (ML classifies natural language descriptions; it does not legally verify crime occurrences).
-- **Not a personal safety guarantor** (all outputs are probabilistic decision-support estimates based on available data).
-
----
-
-## 2. Architecture & Tech Stack
+## Project structure
 
 ```text
-safepath/
-├── client/          # React 18 + Vite + Tailwind CSS + Leaflet + React-Leaflet
-├── server/          # Node.js + Express + Mongoose + JWT + bcrypt + Authoritative Risk Engine
-├── ml/              # Python microservice (Flask + scikit-learn TF-IDF + Logistic Regression)
-├── docs/            # Architecture Decision Records (ADRs)
-├── README.md        # Documentation
-└── SAFEPath_Harness_Engineering.md # Engineering Contract
+safepath_1/
++-- client/                 # React + Vite frontend UI
++-- server/                 # Express API, MongoDB models, risk engine, auth
++-- ml/                     # Flask microservice for incident classification
++-- docs/                   # ADRs and implementation notes
++-- scripts/                # Data extraction utilities
++-- README.md               # Project overview and setup
++-- package.json            # Root convenience scripts
++-- SAFEPath_Harness_Engineering.md
++-- .gitignore
 ```
 
-### Stack Details
-- **Frontend**: React 18, Tailwind CSS, Leaflet, React-Leaflet, OpenStreetMap, Axios, Lucide React
-- **Backend**: Node.js, Express.js, MongoDB / Mongoose, JWT, bcryptjs
-- **ML Microservice**: Python 3, scikit-learn, Pandas, NumPy, Joblib, Flask, Flask-CORS
-- **Testing**: Jest, Supertest (Node.js), Pytest (Python)
+## Tech stack
 
----
+- Frontend: React 18, Vite, Tailwind CSS, Leaflet, React-Leaflet, Axios
+- Backend: Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs
+- ML service: Python 3, Flask, scikit-learn, pandas, numpy, joblib
+- Testing: Jest + Supertest for the API, pytest for the ML service
 
-## 3. Database Schema
+## Architecture and behavior
 
-SafePath uses exactly three MongoDB collections:
+### Frontend
+The React app provides pages for:
 
-### 1. `users`
-```json
-{
-  "_id": "ObjectId",
-  "name": "Ramesh Deshmukh",
-  "email": "user@safepath.nagpur",
-  "password": "<bcrypt_hash>",
-  "role": "user | admin",
-  "createdAt": "2026-08-29T22:00:00.000Z"
-}
-```
+- home view with route analysis and zone metrics
+- signup/login flows
+- citizen incident reporting with evidence upload
+- admin moderation console for review and audit actions
 
-### 2. `areas` (Nagpur Zones)
-```json
-{
-  "_id": "ObjectId",
-  "name": "Dharampeth",
-  "center": {
-    "latitude": 21.1428,
-    "longitude": 79.0624
-  },
-  "riskScore": 18,
-  "riskLevel": "Low | Moderate | High | Critical",
-  "neighbors": ["Sitabuldi", "Ramdaspeth", "Civil Lines", "Laxmi Nagar", "Gokulpeth"],
-  "updatedAt": "2026-08-29T22:00:00.000Z"
-}
-```
+### Backend
+The Express server exposes the core API and contains:
 
-### 3. `reports`
-```json
-{
-  "_id": "ObjectId",
-  "userId": "ObjectId(User)",
-  "latitude": 21.1428,
-  "longitude": 79.0624,
-  "areaId": "ObjectId(Area)",
-  "description": "Someone snatched my phone from my hand and fled.",
-  "incidentType": "Theft | Robbery | Harassment | Assault | Suspicious Activity | Other",
-  "confidence": 0.89,
-  "timestamp": "2026-08-29T22:00:00.000Z",
-  "status": "active | low_confidence | flagged | archived"
-}
-```
+- auth routes and JWT-based access control
+- area lookup endpoints for Nagpur police-station catchments
+- navigation analysis for source/destination corridor evaluation
+- report submission, retrieval, review, and audit-log endpoints
+- authoritative risk scoring based on accepted incidents and historical baselines
 
----
+### ML microservice
+The Python service listens on port 5001 and exposes:
 
-## 4. Authoritative Risk Engine
+- GET /health
+- POST /predict
 
-The backend risk engine (`server/src/services/riskEngine.js`) calculates dynamic risk scores on a scale of `0–100`:
+It predicts the incident class from a free-text description using a TF-IDF + Logistic Regression pipeline and returns a confidence score.
 
-$$ \text{Total Area Risk} = \text{Clamp}_{0}^{100}\left( \text{BaseRisk} + \sum (\text{Severity} \times \text{Confidence} \times \text{TimeDecay}) + \text{FrequencyBonus} \right) $$
+## Data model summary
 
-- **Severity Weights**:
-  - Assault: 25
-  - Robbery: 20
-  - Harassment: 15
-  - Theft: 10
-  - Suspicious Activity: 5
-  - Other: 5
-- **Time Decay**: Half-life decay ($T_{1/2} = 30$ days), ensuring older incidents gradually diminish in weight.
-- **Categorical Risk Levels**:
-  - `0–25`: Low (Green)
-  - `26–50`: Moderate (Amber)
-  - `51–75`: High (Orange)
-  - `76–100`: Critical (Red)
+SafePath uses MongoDB collections for users, areas, reports, and audit logs. The actual schema in this codebase includes:
 
----
+- users: auth and role data (user or admin)
+- areas: Nagpur area metadata, risk score, risk level, center coordinates, neighbors, and historical baseline data
+- reports: submitted incidents with description, ML prediction, evidence image URLs, review state, and admin moderation details
+- audit_logs: actions taken by users/admins for review and investigation
 
-## 5. Machine Learning Classification Pipeline
+A key application rule in the current code is that a report stays in pending_review until an admin accepts or rejects it. Only accepted reports are used to recalibrate area risk.
 
-The Python microservice trains a **TF-IDF bi-gram vectorizer** with **Logistic Regression** on balanced synthetic Nagpur incident descriptions:
-
-- **Classes**: Theft, Robbery, Harassment, Assault, Suspicious Activity, Other.
-- **Microservice API**: `POST /predict`
-  - Input: `{"description": "Someone brandished a knife and took my cash"}`
-  - Output: `{"incidentType": "Robbery", "confidence": 0.91, "isLowConfidence": false}`
-- **Low Confidence Threshold**: Configurable threshold (default `0.35`). Ambiguous reports are tagged with `status: 'low_confidence'` in the database.
-
----
-
-## 6. Setup & Installation
+## Quick start
 
 ### Prerequisites
-- Node.js (v18+) & npm
-- Python (3.9+) & pip
-- MongoDB (running locally on port 27017 or MongoDB Atlas URI)
 
-### Quick Setup
+- Node.js 18+
+- npm
+- Python 3.9+
+- MongoDB running locally at mongodb://localhost:27017/safepath
 
-#### 1. ML Microservice Setup
-```bash
-cd ml
-pip install -r requirements.txt
-python train.py      # Trains model and serializes to ml/model/
-python app.py        # Starts Flask service on http://localhost:5001
-```
+### 1) Install dependencies
 
-#### 2. Backend Server Setup
 ```bash
 cd server
 npm install
-cp .env.example .env
-npm run seed         # Seeds 24 Nagpur zones, demo users, and synthetic incidents
-npm run dev          # Starts Express API on http://localhost:5000
+
+cd ../client
+npm install
+
+cd ../ml
+python -m pip install -r requirements.txt
 ```
 
-#### 3. Frontend Client Setup
+### 2) Configure environment
+
+Create the backend environment file:
+
+```bash
+cd ../server
+cp .env.example .env
+```
+
+The default values are:
+
+- PORT=5000
+- MONGODB_URI=mongodb://localhost:27017/safepath
+- JWT_SECRET=safepath_super_secret_jwt_key_2026
+- ML_SERVICE_URL=http://localhost:5001
+- ML_CONFIDENCE_THRESHOLD=0.35
+
+### 3) Seed the database
+
+```bash
+cd server
+npm run seed
+```
+
+This creates demo users and imports Nagpur station data into MongoDB.
+
+### 4) Start the services
+
+Terminal 1: ML microservice
+
+```bash
+cd ml
+python app.py
+```
+
+Terminal 2: backend API
+
+```bash
+cd server
+npm run dev
+```
+
+Terminal 3: frontend
+
 ```bash
 cd client
-npm install
-npm run dev          # Starts Vite React application on http://localhost:3000
+npm run dev
 ```
 
----
+The frontend runs on http://localhost:3000 and proxies API requests to the backend on http://localhost:5000.
 
-## 7. Default Demo Accounts
+## Convenience scripts at repo root
 
-- **Admin Account**: `admin@safepath.nagpur` / `Admin@12345`
-- **Standard User**: `user@safepath.nagpur` / `User@12345`
-
----
-
-## 8. API Reference
-
-| Method | Endpoint | Description | Auth Required |
-|---|---|---|---|
-| `POST` | `/api/auth/signup` | Register new citizen account | No |
-| `POST` | `/api/auth/login` | Sign in & obtain JWT Bearer token | No |
-| `GET` | `/api/auth/me` | Fetch authenticated profile | Yes |
-| `GET` | `/api/areas` | List all 24 Nagpur safety zones & risk scores | No |
-| `GET` | `/api/areas/:id` | Get zone metrics & recent incident history | No |
-| `GET` | `/api/reports` | Query incident reports with filters | Optional |
-| `POST` | `/api/reports` | Submit incident report (triggers ML & risk update) | Yes |
-| `PATCH` | `/api/reports/:id/status` | Moderate report status (active, flagged, archived) | Admin |
-| `POST` | `/api/navigation` | Analyze corridor safety between Source & Destination | No |
-| `GET` | `/api/health` | Health status of API and ML microservice | No |
-
----
-
-## 9. Running Tests
-
-### Backend Unit & Integration Tests (Jest & Supertest)
 ```bash
-cd server
-npm test
+npm run dev:server
+npm run dev:client
+npm run dev:ml
+npm run seed
+npm run test
+npm run build
 ```
 
-### ML Pipeline Tests (Pytest)
-```bash
-cd ml
-python -m pytest
-```
+## Demo accounts
 
----
+After seeding the database, use these credentials:
 
-## 10. Architecture Decision Records (ADRs)
+- Admin: admin@safepath.nagpur / Admin@12345
+- User: user@safepath.nagpur / User@12345
 
-- [ADR 001: Maps with Leaflet & OpenStreetMap](file:///C:/Users/Shlok/Desktop/idealab_harness/docs/adr/001-maps-leaflet-openstreetmap.md)
-- [ADR 002: Predefined Zone Recommendations vs Turn-by-Turn](file:///C:/Users/Shlok/Desktop/idealab_harness/docs/adr/002-zone-based-recommendations.md)
-- [ADR 003: Incident Classification with TF-IDF & Logistic Regression](file:///C:/Users/Shlok/Desktop/idealab_harness/docs/adr/003-ml-incident-classification.md)
-- [ADR 004: Authoritative Dynamic Risk Scoring Engine](file:///C:/Users/Shlok/Desktop/idealab_harness/docs/adr/004-risk-scoring.md)
+## API overview
 
----
+### Authentication
 
-## 11. Limitations & Future Scope
+- POST /api/auth/signup - register a user account
+- POST /api/auth/login - log in and receive a JWT
+- GET /api/auth/me - fetch current authenticated user
 
-### Current Scope & Limitations
-- Initial historical incident data is synthetic for demonstration and calibration.
-- Navigation recommendations operate at the **predefined zone level** rather than micro-street segments.
+### Area and navigation data
 
-### Documented Future Scope
-- Official municipal and police department incident dataset integration.
-- Street lighting and CCTV density layers.
-- Real-time emergency SOS broadcasting.
-- Expansion to additional cities beyond Nagpur.
+- GET /api/areas - list Nagpur risk zones / catchment areas
+- GET /api/areas/:id - fetch one area by ID
+- POST /api/navigation - analyze a source-destination journey and return safer corridor guidance
+
+### Incident reporting
+
+- GET /api/reports - list reports with filters and role-based access
+- GET /api/reports/:id - fetch a single report with RBAC checks
+- POST /api/reports - create a report with description + evidence files
+- PATCH /api/reports/:id/review - accept, reject, or archive a report as admin
+- GET /api/reports/audit/logs - retrieve moderation audit trail
+
+### Health
+
+- GET /api/health - checks whether the API and ML service are reachable
+
+Note: POST /api/reports accepts multipart form data, not JSON, because evidence images are uploaded alongside the description.
+
+## Risk and moderation model
+
+The project is designed around two important rules:
+
+1. The ML service predicts the incident category from text only.
+2. Public risk scoring is influenced only by admin-approved incidents.
+
+This means a report can be submitted and queued in pending_review without immediately impacting public risk, which keeps the platform aligned with a human moderation and verification workflow.
+
+## Project documentation
+
+The repository includes ADRs that explain the design choices behind the app:
+
+- [ADR 001: Maps with Leaflet & OpenStreetMap](./docs/adr/001-maps-leaflet-openstreetmap.md)
+- [ADR 002: Predefined Zone Recommendations vs Turn-by-Turn](./docs/adr/002-zone-based-recommendations.md)
+- [ADR 003: Incident Classification with TF-IDF & Logistic Regression](./docs/adr/003-ml-incident-classification.md)
+- [ADR 004: Authoritative Dynamic Risk Scoring Engine](./docs/adr/004-risk-scoring.md)
+
+## Limitations
+
+- The platform is geospatially scoped to Nagpur and uses predefined police-station catchment areas rather than street-level routing.
+- Historical data is intended for demo and evaluation scenarios, not as official municipal or law-enforcement data.
+- Risk scores are decision-support estimates generated from available local data and AI-assisted classification.
